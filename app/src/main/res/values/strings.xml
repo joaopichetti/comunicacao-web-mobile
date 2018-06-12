@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Comunicação Web Mobile</string>
+    <string name="verificando_credenciais">Verificando suas credenciais</string>
+    <string name="title_activity_login">Acessar</string>
+
+    <!-- Strings related to login -->
+    <string name="login_username">Login</string>
+    <string name="login_password">Senha</string>
+    <string name="login_acessar">Acessar</string>
+    <string name="error_username_required">Informe o login</string>
+    <string name="error_password_required">Informe a senha</string>
+    <string name="menu_cidades">Cidades</string>
+    <string name="menu_clientes">Clientes</string>
+    <string name="menu_produtos">Produtos</string>
+    <string name="menu_pedidos">Pedidos</string>
+    <string name="dlg_title_confirm">Confirmação</string>
+    <string name="lst_cidades_empty">Nenhuma cidade cadastrada</string>
+    <string name="confirm_close_app">Deseja sair do app?</string>
+    <string name="dlg_title_error">Erro</string>
+    <string name="error_load_cidades">Erro ao carregar as cidades</string>
+    <string name="error_invalid_credentials">Usuário e/ou senha inválidos</string>
+    <string name="error_load_cidade">Erro ao obter os dados da cidade</string>
+    <string name="error_save_cidade">Erro ao salvar cidade</string>
+    <string name="cidade_nome">Nome</string>
+    <string name="cidade_uf_sigla">Sigla da UF</string>
+    <string name="cidade_cep_inicial">CEP Inicial</string>
+    <string name="cidade_cep_final">CEP Final</string>
+    <string name="cidade_data_fundacao">Data da fundação</string>
+    <string name="cidade_salvar">Salvar</string>
+    <string name="cidade_nome_required">Informe o nome</string>
+    <string name="cidade_uf_sigla_required">Informe a sigla da UF</string>
+    <string name="context_menu_title">Ações</string>
+    <string name="popup_menu_alterar">Alterar</string>
+    <string name="popup_menu_remover">Remover</string>
+    <string name="remover_cidade_confirmar">Essa operação não poderá ser desfeita. Deseja continuar?</string>
+    <string name="error_remove_cidade">Erro ao remover cidade</string>
+    <string name="aguarde">Aguarde</string>
+    <string name="activity_cidades_title">Cidades</string>
+    <string name="nova_cidade">Nova Cidade</string>
+    <string name="R.string.alterar_cidade">Alterar Cidade (%d)</string>
+    <string name="menu_principal_desconectar">Desconectar</string>
+    <string name="desconectar_confirmar">Você será desconectado do App. Deseja continuar?</string>
+</resources>
