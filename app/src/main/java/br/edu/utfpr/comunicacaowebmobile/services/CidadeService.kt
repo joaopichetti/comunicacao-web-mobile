@@ -1,18 +1,11 @@
 package br.edu.utfpr.comunicacaowebmobile.services
 
-import br.edu.utfpr.comunicacaowebmobile.model.dto.Credentials
 import br.edu.utfpr.comunicacaowebmobile.model.servidor.Cidade
-import br.edu.utfpr.comunicacaowebmobile.model.servidor.Usuario
 import retrofit2.Call
 import retrofit2.http.*
 
+interface CidadeService {
 
-interface ApiService {
-
-    @GET("rest/usuarios/current")
-    fun getCurrentUser(@Header("Authorization") authToken: String): Call<Usuario>
-    @POST("rest/login")
-    fun login(@Body credentials: Credentials): Call<Any>
     @GET("rest/cidades")
     fun getCidades(@Header("Authorization") authToken: String): Call<MutableList<Cidade>>
     @GET("rest/cidades/{cidadeId}")
@@ -23,6 +16,6 @@ interface ApiService {
                      @Body cidade: Cidade): Call<Cidade>
     @DELETE("rest/cidades/{cidadeId}")
     fun removerCidade(@Header("Authorization") authToken: String,
-                      @Path("cidadeId") cidadeId: Int): Call<Any>
+                      @Path("cidadeId") cidadeId: Int): Call<Void>
 
 }

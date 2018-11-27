@@ -6,11 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import br.edu.utfpr.comunicacaowebmobile.R
 import br.edu.utfpr.comunicacaowebmobile.model.servidor.Usuario
-import br.edu.utfpr.comunicacaowebmobile.services.ApiService
 import br.edu.utfpr.comunicacaowebmobile.services.ServiceGenerator
-import br.edu.utfpr.comunicacaowebmobile.util.helpers.AppHelper
+import br.edu.utfpr.comunicacaowebmobile.services.UsuarioService
 import br.edu.utfpr.comunicacaowebmobile.util.RESULT_CODE_LOGIN_SUCCESSFUL
 import br.edu.utfpr.comunicacaowebmobile.util.SHARED_PREF_TOKEN
+import br.edu.utfpr.comunicacaowebmobile.util.helpers.AppHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,7 +49,7 @@ class SplashActivity : AppCompatActivity() {
         if (TextUtils.isEmpty(token)) {
             iniciarLogin()
         } else {
-            val service = ServiceGenerator.createService(ApiService::class.java)
+            val service = ServiceGenerator.createService(UsuarioService::class.java)
             val call = service.getCurrentUser("Bearer $token")
             call.enqueue(object: Callback<Usuario> {
                 override fun onResponse(call: Call<Usuario>?, response: Response<Usuario>?) {

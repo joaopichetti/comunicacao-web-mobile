@@ -6,8 +6,8 @@ import android.view.View
 import android.widget.Toast
 import br.edu.utfpr.comunicacaowebmobile.R
 import br.edu.utfpr.comunicacaowebmobile.model.dto.Credentials
-import br.edu.utfpr.comunicacaowebmobile.services.ApiService
 import br.edu.utfpr.comunicacaowebmobile.services.ServiceGenerator
+import br.edu.utfpr.comunicacaowebmobile.services.UsuarioService
 import br.edu.utfpr.comunicacaowebmobile.util.RESULT_CODE_LOGIN_SUCCESSFUL
 import br.edu.utfpr.comunicacaowebmobile.util.SHARED_PREF_TOKEN
 import br.edu.utfpr.comunicacaowebmobile.util.helpers.AppHelper
@@ -48,11 +48,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     private fun efetuarLogin() {
         showProgress()
-        val service = ServiceGenerator.createService(ApiService::class.java)
+        val service = ServiceGenerator.createService(UsuarioService::class.java)
         val credentials = Credentials(edtUsername.text.toString(), edtPassword.text.toString())
         val call = service.login(credentials)
-        call.enqueue(object: Callback<Any> {
-            override fun onResponse(call: Call<Any>?, response: Response<Any>?) {
+        call.enqueue(object: Callback<Void> {
+            override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                 if (response?.isSuccessful == true) {
                     val token = response.headers()?.get("Authorization")?.replace("Bearer ", "")
                     if (TextUtils.isEmpty(token)) {
@@ -67,7 +67,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 }
             }
 
-            override fun onFailure(call: Call<Any>?, t: Throwable?) {
+            override fun onFailure(call: Call<Void>?, t: Throwable?) {
                 t?.printStackTrace()
                 fail()
             }

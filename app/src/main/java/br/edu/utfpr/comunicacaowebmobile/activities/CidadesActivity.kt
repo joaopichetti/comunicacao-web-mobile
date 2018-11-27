@@ -9,7 +9,7 @@ import android.widget.PopupMenu
 import br.edu.utfpr.comunicacaowebmobile.R
 import br.edu.utfpr.comunicacaowebmobile.adapters.AdapterListView
 import br.edu.utfpr.comunicacaowebmobile.model.servidor.Cidade
-import br.edu.utfpr.comunicacaowebmobile.services.ApiService
+import br.edu.utfpr.comunicacaowebmobile.services.CidadeService
 import br.edu.utfpr.comunicacaowebmobile.services.ServiceGenerator
 import br.edu.utfpr.comunicacaowebmobile.util.DialogCallback
 import br.edu.utfpr.comunicacaowebmobile.util.EXTRA_CIDADE_ID
@@ -29,7 +29,7 @@ class CidadesActivity : BaseActivity(), PopupMenu.OnMenuItemClickListener {
     }
 
     private lateinit var adapter: AdapterListView<Cidade>
-    private lateinit var apiService: ApiService
+    private lateinit var cidadeService: CidadeService
     private var cidadeSelecionada: Cidade? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class CidadesActivity : BaseActivity(), PopupMenu.OnMenuItemClickListener {
         refreshableContainer.setOnRefreshListener {
             carregarCidades()
         }
-        apiService = ServiceGenerator.createService(ApiService::class.java)
+        cidadeService = ServiceGenerator.createService(CidadeService::class.java)
         adapter = AdapterListView(this, mutableListOf())
         lstCidades.adapter = adapter
         lstCidades.setOnScrollListener(object: AbsListView.OnScrollListener {
@@ -94,7 +94,7 @@ class CidadesActivity : BaseActivity(), PopupMenu.OnMenuItemClickListener {
 
     private fun carregarCidades() {
         val token = AppHelper(this).getStringPref(SHARED_PREF_TOKEN)
-        val call = apiService.getCidades(token ?: "")
+        val call = cidadeService.getCidades(token ?: "")
         call.enqueue(object: Callback<MutableList<Cidade>> {
             override fun onResponse(call: Call<MutableList<Cidade>>?, response: Response<MutableList<Cidade>>?) {
                 if (response?.isSuccessful == true) {
@@ -132,9 +132,9 @@ class CidadesActivity : BaseActivity(), PopupMenu.OnMenuItemClickListener {
                     override fun execute() {
                         showProgress()
                         val token = AppHelper(this@CidadesActivity).getStringPref(SHARED_PREF_TOKEN) ?: ""
-                        val call = apiService.removerCidade(token, cidadeSelecionada?.codigo ?: 0)
-                        call.enqueue(object: Callback<Any> {
-                            override fun onResponse(call: Call<Any>?, response: Response<Any>?) {
+                        val call = cidadeService.removerCidade(token, cidadeSelecionada?.codigo ?: 0)
+                        call.enqueue(object: Callback<Void> {
+                            override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                                 if (response?.isSuccessful == true) {
                                     carregarCidades()
                                 } else {
@@ -142,7 +142,7 @@ class CidadesActivity : BaseActivity(), PopupMenu.OnMenuItemClickListener {
                                 }
                             }
 
-                            override fun onFailure(call: Call<Any>?, t: Throwable?) {
+                            override fun onFailure(call: Call<Void>?, t: Throwable?) {
                                 t?.printStackTrace()
                                 fail()
                             }

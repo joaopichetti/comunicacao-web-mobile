@@ -1,5 +1,5 @@
 package br.edu.utfpr.comunicacaowebmobile.model.servidor
 
-import java.util.*
+import java.time.LocalDate
 
-data class Pedido(var codigo: Int, var cliente: Cliente, var data: Calendar, var itens: List<PedidoItem>)
+data class Pedido(var codigo: Int, var cliente: Cliente, var data: LocalDate, var itens: List<PedidoItem>)
